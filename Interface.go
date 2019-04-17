@@ -66,7 +66,7 @@ func main() {
 
 func sendMessage(text string, conn net.Conn) {
 	//Cut off any newline character
-	text = strings.Trim(text, "\n")
+	text = strings.Trim(text, "\r\n")
 
 	//Turn string into bytes
 	textBytes := []byte(text)
@@ -81,7 +81,7 @@ func sendMessage(text string, conn net.Conn) {
 	byteArray = append(byteArray, END_BYTE)
 
 	//Just a message for debugging
-	log(fmt.Sprintf("About to send: %v", byteArray))
+	log(fmt.Sprintf("About to send: % x", byteArray))
 
 	//send bytes to server
 	conn.Write(byteArray)
